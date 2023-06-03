@@ -1,4 +1,5 @@
 import 'package:marvel_heroes_app/core/networking.dart';
+import 'package:marvel_heroes_app/models/character_details.dart';
 import 'package:marvel_heroes_app/models/characters_list.dart';
 
 class CharacterService {
@@ -18,5 +19,16 @@ class CharacterService {
     final data = response['data'];
 
     return CharactersList.fromJson(data);
+  }
+
+  Future<CharacterDetails> getCharacterDetails(
+      {required int characterId}) async {
+    final networking = Networking();
+
+    final response =
+        await networking.get(operationPath: '$_basePath/$characterId');
+    final data = response['data'];
+
+    return CharacterDetails.fromJson(data);
   }
 }

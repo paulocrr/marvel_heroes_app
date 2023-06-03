@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:marvel_heroes_app/models/character.dart';
+import 'package:marvel_heroes_app/pages/character_details_page.dart';
 import 'package:marvel_heroes_app/services/characters_service.dart';
 
 class HomePage extends StatefulWidget {
@@ -63,6 +64,16 @@ class _HomePageState extends State<HomePage> {
                 backgroundImage: NetworkImage(character.thumbnail),
               ),
               title: Text(character.name),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CharacterDetailsPage(id: character.id);
+                    },
+                  ),
+                );
+              },
             );
           },
         ),
